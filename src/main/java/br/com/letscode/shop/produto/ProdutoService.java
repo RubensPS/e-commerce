@@ -1,6 +1,5 @@
 package br.com.letscode.shop.produto;
 
-import br.com.letscode.shop.fabricante.FabricanteEntity;
 import br.com.letscode.shop.fabricante.FabricanteRepository;
 import org.springframework.stereotype.Service;
 
@@ -27,18 +26,13 @@ public class ProdutoService {
         return produtoRepository.save(entity);
     }
 
-    public List<FabricanteEntity> listarFabricantes() {
-        List<FabricanteEntity> fabricanteEntities = fabricanteRepository.findAll();
-        return fabricanteEntities;
-    }
-
     public ProdutoEntity toEntity(ProdutoRequest request) {
         return new ProdutoEntity(
                 request.getNome(),
                 request.getDescricao(),
                 request.getValor(),
                 request.getCodigoBarra(),
-                fabricanteRepository.findByName(request.getNomeFabricante()),
+                fabricanteRepository.findByNomeFabricante(request.getNomeFabricante()),
                 request.getPeso(),
                 request.getPesoUnidadeMedida());
     }

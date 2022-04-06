@@ -18,24 +18,8 @@ import lombok.RequiredArgsConstructor;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CarrinhoRequest {
 
-    private ProdutoRepository produtoRepository;
-    private UsuarioRepository usuarioRepository;
-
     private Long usuarioId;
     private int quantidade;
     private String codigoBarra;
-
-
-    public CarrinhoRequest(ProdutoRepository produtoRepository, UsuarioRepository usuarioRepository) {
-        this.produtoRepository = produtoRepository;
-        this.usuarioRepository = usuarioRepository;
-    }
-
-    public CarrinhoEntity toEntity() {
-       return new CarrinhoEntity(
-               produtoRepository.findByCodigoBarra(this.getCodigoBarra()),
-               this.getQuantidade(),
-               usuarioRepository.findById(this.usuarioId).orElseThrow());
-    }
 
 }

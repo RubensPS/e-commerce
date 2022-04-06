@@ -22,6 +22,7 @@ public class CarrinhoController {
 
     @GetMapping("/consultar/{userId}")
     public ResponseEntity<List<CarrinhoEntity>> consultarCarrinho(@PathVariable Long userId) {
+
         List<CarrinhoEntity> carrinhoEntities = carrinhoService.consultarCarrinhoPorId(userId);
         return ResponseEntity.ok(carrinhoEntities);
     }

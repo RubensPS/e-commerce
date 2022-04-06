@@ -43,4 +43,11 @@ public class UsuarioController {
         // um request de parametros não obrigatorios e alterar o que vier no bd, retornando o usuario com dados dalterados
         return null;
     }
+
+    @GetMapping("/consultarNome/{nomeUsuario}")
+    public ResponseEntity<UsuarioEntity> consultarUsuario(@PathVariable String nomeUsuario) {
+        UsuarioEntity entity = usuarioService.consultarUsuarioPorNomeUsuario(nomeUsuario);
+        return ResponseEntity.ok(entity);
+    }
+
 }

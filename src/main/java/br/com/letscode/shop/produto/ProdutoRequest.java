@@ -1,7 +1,5 @@
 package br.com.letscode.shop.produto;
 
-import br.com.letscode.shop.fabricante.FabricanteEntity;
-import br.com.letscode.shop.fabricante.FabricanteRepository;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;

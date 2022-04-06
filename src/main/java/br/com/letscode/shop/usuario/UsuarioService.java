@@ -38,6 +38,10 @@ public class UsuarioService implements UserDetailsService {
         usuarioRepository.deleteById(id);
     }
 
+    public UsuarioEntity consultarUsuarioPorNomeUsuario(String nomeUsuario) {
+        return usuarioRepository.findByNomeUsuario(nomeUsuario);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
        UsuarioEntity usuario = usuarioRepository.findByNomeUsuario(username);

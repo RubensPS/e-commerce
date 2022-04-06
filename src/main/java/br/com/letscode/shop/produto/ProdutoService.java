@@ -5,7 +5,6 @@ import br.com.letscode.shop.fabricante.FabricanteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 
@@ -24,20 +23,24 @@ public class ProdutoService {
     }
 
     public ProdutoEntity create(ProdutoRequest request) {
-        Optional<FabricanteEntity> oFabricanteEntity = fabricanteRepository.findById(request.toEntity().getFabricante().getId());
-        ProdutoEntity entity = toEntity(request, oFabricanteEntity.get());
+        ProdutoEntity entity = toEntity(request);
         return produtoRepository.save(entity);
     }
 
-    public ProdutoEntity toEntity(ProdutoRequest produtoRequest, FabricanteEntity fabricanteEntity) {
+    public List<FabricanteEntity> listarFabricantes() {
+        List<FabricanteEntity> fabricanteEntities = fabricanteRepository.findAll();
+        return fabricanteEntities;
+    }
+
+    public ProdutoEntity toEntity(ProdutoRequest request) {
         return new ProdutoEntity(
-                produtoRequest.getNome(),
-                produtoRequest.getDescricao(),
-                produtoRequest.getValor(),
-                produtoRequest.getCodigoBarra(),
-                fabricanteEntity,
-                produtoRequest.getPeso(),
-                produtoRequest.getPesoUnidadeMedida());
+                request.getNome(),
+                request.getDescricao(),
+                request.getValor(),
+                request.getCodigoBarra(),
+                fabricanteRepository.findByName(request.getNomeFabricante()),
+                request.getPeso(),
+                request.getPesoUnidadeMedida());
     }
 
 }

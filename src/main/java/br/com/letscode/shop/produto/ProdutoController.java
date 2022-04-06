@@ -1,5 +1,6 @@
 package br.com.letscode.shop.produto;
 
+import br.com.letscode.shop.fabricante.FabricanteEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,4 +29,9 @@ public class ProdutoController {
         return new ResponseEntity<ProdutoEntity>(entity, HttpStatus.CREATED);
     }
 
+    @GetMapping("/fabricantes")
+    public ResponseEntity<List<FabricanteEntity>> listarFabricantes() {
+        List<FabricanteEntity> fabricanteEntities = produtoService.listarFabricantes();
+        return ResponseEntity.ok(fabricanteEntities);
+    }
 }

@@ -19,12 +19,12 @@ public class ProdutoApplication {
         SpringApplication.run(ProdutoApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     CommandLineRunner run(UsuarioService usuarioService) {
         return args -> {
             usuarioService.criar(new UsuarioRequest("aramiz", "1234", "ADMIN", "Aramiz", LocalDate.of(1984, 4, 23), ZonedDateTime.now(), ZonedDateTime.now()));
         };
-    }
+    }*/
 
     @Bean
     PasswordEncoder passwordEncoder() {

@@ -27,7 +27,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/consultar/{id}")
-    public ResponseEntity<UsuarioEntity> consultarUsuario(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<UsuarioEntity> consultarUsuario(@PathVariable Long id) {
         UsuarioEntity entity = usuarioService.consultarUsuarioPorId(id);
         return ResponseEntity.ok(entity);
     }

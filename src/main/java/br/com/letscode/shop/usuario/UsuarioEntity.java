@@ -3,8 +3,8 @@ package br.com.letscode.shop.usuario;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 @Entity(name = "USUARIO")
 @Data
@@ -23,11 +23,14 @@ public class UsuarioEntity {
     @Column(name = "PASSWORD")
     private String password;
 
+    @Column(name = "FUNCAO")
+    private String funcao;
+
     @Column(name = "NOME")
     private String nome;
 
     @Column(name = "DATA_NASCIMENTO")
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @Column(name = "DATA_CRIACAO")
     private ZonedDateTime dataCriacao;
@@ -35,9 +38,10 @@ public class UsuarioEntity {
     @Column(name = "DATA_ATUALIZACAO")
     private ZonedDateTime dataAtualizacao;
 
-    public UsuarioEntity(String nomeUsuario, String password, String nome, Date dataNascimento) {
+    public UsuarioEntity(String nomeUsuario, String password, String funcao, String nome, LocalDate dataNascimento) {
         this.nomeUsuario = nomeUsuario;
         this.password = password;
+        this.funcao = funcao;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.dataCriacao = ZonedDateTime.now();

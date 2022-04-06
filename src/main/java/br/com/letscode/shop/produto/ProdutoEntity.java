@@ -9,7 +9,6 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Entity(name = "PRODUTO")
-//@Table(name = "PRODUTO")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

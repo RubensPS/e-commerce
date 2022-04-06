@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 
 
 @Data
-@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
@@ -27,10 +26,16 @@ public class CarrinhoRequest {
     private String codigoBarra;
 
 
+    public CarrinhoRequest(ProdutoRepository produtoRepository, UsuarioRepository usuarioRepository) {
+        this.produtoRepository = produtoRepository;
+        this.usuarioRepository = usuarioRepository;
+    }
+
     public CarrinhoEntity toEntity() {
        return new CarrinhoEntity(
                produtoRepository.findByCodigoBarra(this.getCodigoBarra()),
                this.getQuantidade(),
                usuarioRepository.findById(this.usuarioId).orElseThrow());
     }
+
 }

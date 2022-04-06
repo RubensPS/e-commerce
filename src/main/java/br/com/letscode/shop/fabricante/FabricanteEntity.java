@@ -18,5 +18,5 @@ public class FabricanteEntity {
     private Long id;
 
     @Column(name = "NAME")
-    private String name;
+    private String nomeFabricante;
 }

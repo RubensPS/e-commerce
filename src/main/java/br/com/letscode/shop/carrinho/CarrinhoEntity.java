@@ -20,7 +20,7 @@ public class CarrinhoEntity {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "CODIGO_BARRA")
+    @JoinColumn(name = "PRODUTO_ID")
     private ProdutoEntity codigoBarra;
 
     @Column

@@ -28,10 +28,4 @@ public class ProdutoController {
         ProdutoEntity entity = produtoService.create(request);
         return new ResponseEntity<ProdutoEntity>(entity, HttpStatus.CREATED);
     }
-
-    @GetMapping("/fabricantes")
-    public ResponseEntity<List<FabricanteEntity>> listarFabricantes() {
-        List<FabricanteEntity> fabricanteEntities = produtoService.listarFabricantes();
-        return ResponseEntity.ok(fabricanteEntities);
-    }
 }

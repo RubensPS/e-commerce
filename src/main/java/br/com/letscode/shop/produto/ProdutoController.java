@@ -1,6 +1,5 @@
 package br.com.letscode.shop.produto;
 
-import br.com.letscode.shop.fabricante.FabricanteEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +16,19 @@ public class ProdutoController {
         this.produtoService = produtoService;
     }
 
-    @GetMapping("getAll")
+    @GetMapping()
     public ResponseEntity<List<ProdutoEntity>> getAll() {
         List<ProdutoEntity> entities = produtoService.getAll();
         return ResponseEntity.ok(entities);
     }
 
-    @PostMapping("create")
+    @PostMapping()
     public ResponseEntity<ProdutoEntity> create(@RequestBody ProdutoRequest request) {
-        ProdutoEntity entity = produtoService.create(request);
-        return new ResponseEntity<ProdutoEntity>(entity, HttpStatus.CREATED);
+        try {
+            ProdutoEntity entity = produtoService.create(request);
+            return new ResponseEntity<ProdutoEntity>(entity, HttpStatus.CREATED);
+        }catch (Exception exception){
+            return  ResponseEntity.badRequest().build();
+        }
     }
 }

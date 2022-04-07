@@ -1,5 +1,6 @@
 package br.com.letscode.shop.produto;
 
+import br.com.letscode.shop.fabricante.FabricanteEntity;
 import br.com.letscode.shop.fabricante.FabricanteRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,20 +22,23 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public ProdutoEntity create(ProdutoRequest request) {
+    public ProdutoEntity create(ProdutoRequest request) throws Exception {
         ProdutoEntity entity = toEntity(request);
         return produtoRepository.save(entity);
     }
 
-    public ProdutoEntity toEntity(ProdutoRequest request) {
-        return new ProdutoEntity(
-                request.getNome(),
-                request.getDescricao(),
-                request.getValor(),
-                request.getCodigoBarra(),
-                fabricanteRepository.findByNomeFabricante(request.getNomeFabricante()),
-                request.getPeso(),
-                request.getPesoUnidadeMedida());
+    public ProdutoEntity toEntity(ProdutoRequest request) throws Exception {
+        FabricanteEntity fabricante = fabricanteRepository.findByNomeFabricante(request.getNomeFabricante());
+        if (fabricante == null) {
+            throw new Exception("Fabricante não encontrado");
+        }
+            return new ProdutoEntity(
+                    request.getNome(),
+                    request.getDescricao(),
+                    request.getValor(),
+                    request.getCodigoBarra(),
+                    fabricante,
+                    request.getPeso(),
+                    request.getPesoUnidadeMedida());
+        }
     }
-
-}

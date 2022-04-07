@@ -39,8 +39,7 @@ public class UsuarioEntity {
     @Column(name = "DATA_ATUALIZACAO")
     private ZonedDateTime dataAtualizacao;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "carrinho_id")
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private CarrinhoEntity carrinho;
 
     public UsuarioEntity(String nomeUsuario, String password, String funcao, String nome, LocalDate dataNascimento) {

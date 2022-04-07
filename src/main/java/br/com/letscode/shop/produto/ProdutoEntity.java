@@ -40,8 +40,8 @@ public class ProdutoEntity {
     @Column(name = "STATUS")
     private String status;
 
-    @JoinColumn(name = "ID_FABRICANTE")
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "fabricante_id", nullable = false)
     private FabricanteEntity fabricante;
 
     @Column(name = "PESO")

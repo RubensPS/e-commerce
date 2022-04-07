@@ -14,13 +14,13 @@ public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
-    @PostMapping("/criar")
+    @PostMapping()
     public ResponseEntity<UsuarioEntity> salvarNovoUsuario(@RequestBody UsuarioRequest request) {
         UsuarioEntity entity = usuarioService.criar(request);
         return new ResponseEntity(entity, HttpStatus.CREATED);
     }
 
-    @GetMapping("/listar")
+    @GetMapping()
     public ResponseEntity<List<UsuarioEntity>> listarTodosUsuarios() {
         List<UsuarioEntity> entities = usuarioService.listarTodos();
         return ResponseEntity.ok(entities);
@@ -32,12 +32,12 @@ public class UsuarioController {
         return ResponseEntity.ok(entity);
     }
 
-    @DeleteMapping("/excluir/{id}")
+    @DeleteMapping("/{id}")
     public void excluirUsuario(@PathVariable Long id) {
         usuarioService.excluirUsuarioPorId(id);
     }
 
-    @PatchMapping("/alterar")
+    @PatchMapping()
     public ResponseEntity<UsuarioEntity> alterarUsuario(@RequestBody UsuarioRequest request) {
         //chamar metodo para alteração de usuario. verificar se é possível receber
         // um request de parametros não obrigatorios e alterar o que vier no bd, retornando o usuario com dados dalterados

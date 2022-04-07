@@ -1,5 +1,7 @@
 package br.com.letscode.shop.usuario;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
@@ -15,12 +17,13 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UsuarioRequest {
-
+    @JsonProperty("nomeUsuario")
     private String nomeUsuario;
     private String password;
     private String funcao;
     private String nome;
-    @DateTimeFormat
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonProperty("dataNascimento")
     private LocalDate dataNascimento;
     private ZonedDateTime dataCriacao;
     private ZonedDateTime dataAtualizacao;

@@ -24,5 +24,5 @@ public class FabricanteEntity {
 
     @OneToMany(mappedBy = "fabricante", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private Set<ProdutoEntity> pages;
+    private Set<ProdutoEntity> produtos;
 }

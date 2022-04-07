@@ -31,7 +31,8 @@ public class CarrinhoEntity {
                     @JoinColumn(name = "produto_id", referencedColumnName = "id",
                             nullable = false, updatable = false)})
     Set<ProdutoEntity> products = new HashSet<>();
-    @OneToOne(mappedBy = "carrinho", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private UsuarioEntity user;
 
 }

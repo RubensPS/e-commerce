@@ -1,5 +1,6 @@
 package br.com.letscode.shop.usuario;
 
+import br.com.letscode.shop.carrinho.CarrinhoEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -37,6 +38,10 @@ public class UsuarioEntity {
 
     @Column(name = "DATA_ATUALIZACAO")
     private ZonedDateTime dataAtualizacao;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "carrinho_id")
+    private CarrinhoEntity carrinho;
 
     public UsuarioEntity(String nomeUsuario, String password, String funcao, String nome, LocalDate dataNascimento) {
         this.nomeUsuario = nomeUsuario;

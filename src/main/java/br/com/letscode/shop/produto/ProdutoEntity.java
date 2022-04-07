@@ -1,11 +1,14 @@
 package br.com.letscode.shop.produto;
 
+import br.com.letscode.shop.carrinho.CarrinhoEntity;
 import br.com.letscode.shop.fabricante.FabricanteEntity;
 import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "PRODUTO")
@@ -37,8 +40,8 @@ public class ProdutoEntity {
     @Column(name = "STATUS")
     private String status;
 
-    @JoinColumn(name = "ID_FABRICANTE")
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "fabricante_id", nullable = false)
     private FabricanteEntity fabricante;
 
     @Column(name = "PESO")
@@ -52,6 +55,9 @@ public class ProdutoEntity {
 
     @Column(name = "DATA_ATUALIZACAO")
     private ZonedDateTime dataAtualizacao;
+
+    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
+    private Set<CarrinhoEntity> carrinho = new HashSet<>();
 
     public ProdutoEntity(String nome, String descricao, BigDecimal valor, String codigoBarra, FabricanteEntity fabricante, Integer peso, String pesoUnidadeMedida) {
         this.codigo = UUID.randomUUID();

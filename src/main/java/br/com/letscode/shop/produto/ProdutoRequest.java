@@ -22,5 +22,4 @@ public class ProdutoRequest {
     private Integer peso;
     @JsonProperty("pesoUnidadeMedida")
     private String pesoUnidadeMedida;
-
 }

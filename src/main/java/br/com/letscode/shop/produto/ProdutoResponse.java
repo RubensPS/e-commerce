@@ -35,5 +35,6 @@ public class ProdutoResponse {
         this.fabricante = produto.getFabricante().getNomeFabricante();
         this.pesoUnidadeMedida = produto.getPesoUnidadeMedida();
     }
-
 }
+
+

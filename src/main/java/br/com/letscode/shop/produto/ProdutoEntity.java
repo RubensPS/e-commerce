@@ -56,8 +56,8 @@ public class ProdutoEntity {
     @Column(name = "DATA_ATUALIZACAO")
     private ZonedDateTime dataAtualizacao;
 
-    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
-    private Set<CarrinhoEntity> carrinho = new HashSet<>();
+    @OneToMany(mappedBy = "produto")
+    Set<CarrinhoEntity> ItemsCarrinho = new HashSet<>();
 
     public ProdutoEntity(String nome, String descricao, BigDecimal valor, String codigoBarra, FabricanteEntity fabricante, Integer peso, String pesoUnidadeMedida) {
         this.codigo = UUID.randomUUID();

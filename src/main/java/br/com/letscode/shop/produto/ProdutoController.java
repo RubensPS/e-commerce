@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/produtos")
@@ -17,17 +18,17 @@ public class ProdutoController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<ProdutoEntity>> getAll() {
+    public ResponseEntity<List<ProdutoResponse>> getAll() {
         List<ProdutoEntity> entities = produtoService.getAll();
-        return ResponseEntity.ok(entities);
+        return ResponseEntity.ok(entities.stream().map(ProdutoResponse::new).collect(Collectors.toList()));
     }
 
     @PostMapping()
-    public ResponseEntity<ProdutoEntity> create(@RequestBody ProdutoRequest request) {
+    public ResponseEntity<ProdutoResponse> create(@RequestBody ProdutoRequest request) {
         try {
-            ProdutoEntity entity = produtoService.create(request);
-            return new ResponseEntity<ProdutoEntity>(entity, HttpStatus.CREATED);
-        }catch (Exception exception){
+            ProdutoResponse entity =  new ProdutoResponse(produtoService.create(request));
+            return new ResponseEntity<>(entity, HttpStatus.CREATED);
+        } catch (Exception exception){
             return  ResponseEntity.badRequest().build();
         }
     }

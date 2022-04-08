@@ -12,18 +12,25 @@ import java.util.List;
 @RequestMapping("/carrinho")
 public class CarrinhoController {
 
-//    private final CarrinhoService carrinhoService;
-//
-//    @PostMapping
-//    public ResponseEntity<CarrinhoEntity> criar(@RequestBody CarrinhoRequest carrinhoRequest){
-//        CarrinhoEntity carrinhoEntity = carrinhoService.criar(carrinhoRequest);
-//        return new ResponseEntity(carrinhoEntity, HttpStatus.CREATED);
-//    }
-//
-//    @GetMapping("/consultar/{userId}")
-//    public ResponseEntity<List<CarrinhoEntity>> consultarCarrinho(@PathVariable Long userId) {
-//
-//        List<CarrinhoEntity> carrinhoEntities = carrinhoService.consultarCarrinhoPorId(userId);
-//        return ResponseEntity.ok(carrinhoEntities);
-//    }
+    private final CarrinhoService carrinhoService;
+
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<CarrinhoResponse>> consultarCarrinho(@PathVariable Long usuarioId) {
+        try {
+            var carrinhoEntities = carrinhoService.buscarPorUsuário(usuarioId);
+            return ResponseEntity.ok(carrinhoEntities);
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<CarrinhoResponse> adicionarProdutoNoCarrinho(@RequestBody CarrinhoRequest carrinhoRequest){
+        try {
+            return new ResponseEntity(carrinhoService.criar(carrinhoRequest), HttpStatus.CREATED);
+        } catch (Exception exception) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

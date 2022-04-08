@@ -5,8 +5,6 @@ import br.com.letscode.shop.usuario.UsuarioEntity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name="CARRINHO")
@@ -21,18 +19,14 @@ public class CarrinhoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "produto_id")
+    ProdutoEntity produto;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "CARRINHO_PRODUTO",
-            joinColumns = {
-                    @JoinColumn(name = "carrinho_id", referencedColumnName = "id",
-                            nullable = false, updatable = false)},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "produto_id", referencedColumnName = "id",
-                            nullable = false, updatable = false)})
-    Set<ProdutoEntity> products = new HashSet<>();
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private UsuarioEntity user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    UsuarioEntity usuario;
+
+    Long amount;
 
 }

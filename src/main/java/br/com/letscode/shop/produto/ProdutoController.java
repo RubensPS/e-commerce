@@ -27,8 +27,8 @@ public class ProdutoController {
     public ResponseEntity<ProdutoResponse> create(@RequestBody ProdutoRequest request) {
         try {
             ProdutoResponse entity =  new ProdutoResponse(produtoService.create(request));
-            return new ResponseEntity<ProdutoResponse>(entity, HttpStatus.CREATED);
-        }catch (Exception exception){
+            return new ResponseEntity<>(entity, HttpStatus.CREATED);
+        } catch (Exception exception){
             return  ResponseEntity.badRequest().build();
         }
     }

@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.util.Set;
 
 @Entity(name = "USUARIO")
 @Data
@@ -39,8 +40,8 @@ public class UsuarioEntity {
     @Column(name = "DATA_ATUALIZACAO")
     private ZonedDateTime dataAtualizacao;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private CarrinhoEntity carrinho;
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<CarrinhoEntity> carrinho;
 
     public UsuarioEntity(String nomeUsuario, String password, String funcao, String nome, LocalDate dataNascimento) {
         this.nomeUsuario = nomeUsuario;

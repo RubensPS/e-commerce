@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FabricanteRepository extends JpaRepository<FabricanteEntity, Long> {
     FabricanteEntity findByNomeFabricante(String nomeFabricante);
+
+    void deleteByNomeFabricante(String nomeFabricante);
+
 }

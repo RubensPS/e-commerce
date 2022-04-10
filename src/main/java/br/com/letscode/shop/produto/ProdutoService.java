@@ -2,7 +2,9 @@ package br.com.letscode.shop.produto;
 
 import br.com.letscode.shop.fabricante.FabricanteEntity;
 import br.com.letscode.shop.fabricante.FabricanteRepository;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +18,24 @@ public class ProdutoService {
     public ProdutoService(ProdutoRepository produtoRepository, FabricanteRepository fabricanteRepository) {
         this.produtoRepository = produtoRepository;
         this.fabricanteRepository = fabricanteRepository;
+    }
+
+    @Transactional(readOnly = true)
+    public ProdutoResponse consultarCodigoBarra(String codigoBarra) throws Exception {
+        ProdutoEntity produtoEntity = produtoRepository.findByCodigoBarra(codigoBarra);
+        if (produtoEntity == null) {
+            throw new Exception("Produto não encontrado");
+        }
+        return new ProdutoResponse(produtoEntity);
+    }
+
+    @Transactional
+    public void excluirProduto(String codigoBarra) throws Exception {
+        ProdutoEntity produtoEntity = produtoRepository.findByCodigoBarra(codigoBarra);
+        if (produtoEntity == null) {
+            throw new Exception("Produto não encontrado");
+        }
+        produtoRepository.deleteByCodigoBarra(codigoBarra);
     }
 
     public List<ProdutoEntity> getAll() {

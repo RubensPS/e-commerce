@@ -32,4 +32,24 @@ public class ProdutoController {
             return  ResponseEntity.badRequest().build();
         }
     }
+
+    @GetMapping("/consultar/{codigoBarra}")
+    public ResponseEntity<ProdutoResponse> findByCodigoBarra(@PathVariable String codigoBarra) {
+        try {
+            ProdutoResponse produtoResponse = produtoService.consultarCodigoBarra(codigoBarra);
+            return ResponseEntity.ok(produtoResponse);
+        } catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @DeleteMapping("{codigoBarra}")
+    public ResponseEntity<?> excluirProduto(@PathVariable String codigoBarra) throws Exception{
+        try {
+            produtoService.excluirProduto(codigoBarra);
+            return ResponseEntity.ok("Produto excluído com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

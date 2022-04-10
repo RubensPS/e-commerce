@@ -1,18 +1,15 @@
 package br.com.letscode.shop;
 
-import br.com.letscode.shop.usuario.UsuarioRequest;
-import br.com.letscode.shop.usuario.UsuarioService;
-import org.springframework.boot.CommandLineRunner;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
-
 @SpringBootApplication
+@OpenAPIDefinition(info = @Info(title = "Ecommerce API", version = "1.0", description = "Information about ecommerce API"))
 public class ProdutoApplication {
 
     public static void main(String[] args) {

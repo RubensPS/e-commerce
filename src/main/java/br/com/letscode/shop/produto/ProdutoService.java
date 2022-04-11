@@ -38,6 +38,25 @@ public class ProdutoService {
         produtoRepository.deleteByCodigoBarra(codigoBarra);
     }
 
+    @Transactional
+    public ProdutoResponse alterarProduto(String codigoBarra, ProdutoRequest produtoRequest) throws Exception {
+
+        ProdutoEntity entity = produtoRepository.findByCodigoBarra(codigoBarra);
+        if(entity == null) {
+            throw new Exception("Produto não encontrado");
+        }
+        entity.setNome(produtoRequest.getNome());
+        entity.setDescricao(produtoRequest.getDescricao());
+        entity.setValor(produtoRequest.getValor());
+        entity.setCodigoBarra(produtoRequest.getCodigoBarra());
+        entity.setFabricante(fabricanteRepository.findByNomeFabricante(produtoRequest.getNomeFabricante()));
+        entity.setPeso(produtoRequest.getPeso());
+        entity.setPesoUnidadeMedida(produtoRequest.getPesoUnidadeMedida());
+
+        produtoRepository.save(entity);
+        return new ProdutoResponse(entity);
+    }
+
     public List<ProdutoEntity> getAll() {
         return produtoRepository.findAll();
     }

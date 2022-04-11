@@ -33,6 +33,14 @@ public class ProdutoController {
         }
     }
 
+    @PostMapping("alterar/{codigoBarra}")
+    public ResponseEntity<ProdutoResponse> changeProduct(@PathVariable String codigoBarra,
+                                                         @RequestBody ProdutoRequest produtoRequest) throws Exception {
+
+        ProdutoResponse changedProduct = produtoService.alterarProduto(codigoBarra, produtoRequest);
+        return ResponseEntity.ok(changedProduct);
+    }
+
     @GetMapping("/consultar/{codigoBarra}")
     public ResponseEntity<ProdutoResponse> findByCodigoBarra(@PathVariable String codigoBarra) {
         try {

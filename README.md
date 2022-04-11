@@ -18,6 +18,9 @@ API para o projeto de e-commerce
 * Docker
 * PostgreSQL
 
+
+
+
 ### Clone
 
 ```console
@@ -27,9 +30,22 @@ git clone https://github.com/RubensPS/e-commerce
 
 
 ## Requisições
-- Todas as requisições estão documentadas no swagger. Após inicialização do projeto acesse o endereço: http://localhost:8080/swagger-ui.html
+1. Caso não tenha usuário cadastro na base dados, criar ao executar a aplicação através do *CommandLineRunner* encontrado em *ProdutoApplication*
+   1.1 Enviar um método **POST** para "/login" com o Body no formato "Form URL Encoded" com a seguinte estrutura:
+   ```
+   Body:
+   ```
+   ```json
+   { "nomeUsuario": "string",
+     "password": "string"
+   }
+   ```
+   1.2 Será enviado no body da response o *access_token* que deverá ser colocado em todas as demais requisições como um **Bearer Token**
+   1.3 A função *"USER"* apenas consegue utilizar os métodos **GET**
+   1.4 A função *"ADMIN"* consegue acessar todos os métodos;
 
-- Por favor, atentar a todas as observações das requisições.
+2. Todas as requisições estão documentadas no swagger. Após inicialização do projeto acesse o endereço: http://localhost:8080/swagger-ui.html
+3. Por favor, atentar a todas as observações das requisições.
 
 
 <details><summary><b>Rotas dos produtos (Clique aqui)</b></summary>

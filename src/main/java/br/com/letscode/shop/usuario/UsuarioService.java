@@ -1,5 +1,11 @@
 package br.com.letscode.shop.usuario;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
+import io.swagger.v3.core.util.Json;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -40,6 +46,16 @@ public class UsuarioService implements UserDetailsService {
 
     public UsuarioEntity consultarUsuarioPorNomeUsuario(String nomeUsuario) {
         return usuarioRepository.findByNomeUsuario(nomeUsuario);
+    }
+
+    public UsuarioResponse alterarDadosUsuario(Long id, JsonPatch patch) throws JsonPatchException, JsonProcessingException {
+        UsuarioEntity usuarioEntity = usuarioRepository.findById(id).orElseThrow();
+        UsuarioEntity usuarioAlterado = aplicarPatchUsuario(patch, usuarioEntity);
+        return new UsuarioResponse(usuarioRepository.save(usuarioAlterado));
+    }
+    public UsuarioEntity aplicarPatchUsuario(JsonPatch patch, UsuarioEntity usuarioEntity) throws JsonPatchException, JsonProcessingException {
+        JsonNode patched = patch.apply(Json.mapper().convertValue(usuarioEntity, JsonNode.class));
+        return Json.mapper().treeToValue(patched, UsuarioEntity.class);
     }
 
     @Override

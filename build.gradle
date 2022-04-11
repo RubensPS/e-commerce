@@ -36,6 +36,7 @@ dependencies {
     implementation 'org.springframework.security:spring-security-test'
     implementation group: 'com.auth0', name: 'java-jwt', version: '3.19.1'
 
+    implementation group: 'com.github.fge', name: 'json-patch', version: '1.7'
 }
 
 tasks.named('test') {

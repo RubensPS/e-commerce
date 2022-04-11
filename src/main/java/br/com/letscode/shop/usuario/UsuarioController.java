@@ -1,5 +1,8 @@
 package br.com.letscode.shop.usuario;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,11 +40,15 @@ public class UsuarioController {
         usuarioService.excluirUsuarioPorId(id);
     }
 
-    @PatchMapping()
-    public ResponseEntity<UsuarioEntity> alterarUsuario(@RequestBody UsuarioRequest request) {
-        //chamar metodo para alteração de usuario. verificar se é possível receber
-        // um request de parametros não obrigatorios e alterar o que vier no bd, retornando o usuario com dados dalterados
-        return null;
+    @PatchMapping(value = "/{id}", consumes = "application/json-patch+json")
+    public ResponseEntity<UsuarioResponse> alterarDadosUsuario(@PathVariable Long id, @RequestBody JsonPatch patch) {
+        try {
+            UsuarioResponse usuarioResponse = usuarioService.alterarDadosUsuario(id, patch);
+            return ResponseEntity.ok(usuarioResponse);
+        } catch (JsonPatchException | JsonProcessingException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
     }
 
     @GetMapping("/consultarNome/{nomeUsuario}")

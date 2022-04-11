@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-
 public class ProdutoService {
 
     public ProdutoRepository produtoRepository;
@@ -44,6 +43,9 @@ public class ProdutoService {
 
     public ProdutoEntity create(ProdutoRequest request) throws Exception {
         ProdutoEntity entity = toEntity(request);
+        if (produtoRepository.findByCodigoBarra(entity.getCodigoBarra()) != null) {
+            throw new Exception("Código de barra já cadastrado");
+        }
         return produtoRepository.save(entity);
     }
 

@@ -18,21 +18,21 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @PostMapping()
-    public ResponseEntity<UsuarioEntity> salvarNovoUsuario(@RequestBody UsuarioRequest request) {
-        UsuarioEntity entity = usuarioService.criar(request);
-        return new ResponseEntity(entity, HttpStatus.CREATED);
+    public ResponseEntity<UsuarioResponse> salvarNovoUsuario(@RequestBody UsuarioRequest request) {
+        UsuarioResponse response = usuarioService.criar(request);
+        return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
     @GetMapping()
-    public ResponseEntity<List<UsuarioEntity>> listarTodosUsuarios() {
-        List<UsuarioEntity> entities = usuarioService.listarTodos();
-        return ResponseEntity.ok(entities);
+    public ResponseEntity<List<UsuarioResponse>> listarTodosUsuarios() {
+        List<UsuarioResponse> responses = usuarioService.listarTodos();
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/consultar/{id}")
-    public ResponseEntity<UsuarioEntity> consultarUsuario(@PathVariable Long id) {
-        UsuarioEntity entity = usuarioService.consultarUsuarioPorId(id);
-        return ResponseEntity.ok(entity);
+    public ResponseEntity<UsuarioResponse> consultarUsuario(@PathVariable Long id) {
+        UsuarioResponse response = usuarioService.consultarUsuarioPorId(id);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
@@ -52,9 +52,9 @@ public class UsuarioController {
     }
 
     @GetMapping("/consultarNome/{nomeUsuario}")
-    public ResponseEntity<UsuarioEntity> consultarUsuario(@PathVariable String nomeUsuario) {
-        UsuarioEntity entity = usuarioService.consultarUsuarioPorNomeUsuario(nomeUsuario);
-        return ResponseEntity.ok(entity);
+    public ResponseEntity<UsuarioResponse> consultarUsuario(@PathVariable String nomeUsuario) {
+        UsuarioResponse response = usuarioService.consultarUsuarioPorNomeUsuario(nomeUsuario);
+        return ResponseEntity.ok(response);
     }
 
 }

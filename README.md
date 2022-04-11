@@ -30,11 +30,8 @@ git clone https://github.com/RubensPS/e-commerce
 
 
 ## Requisições
-1. Caso não tenha usuário cadastro na base dados, criar ao executar a aplicação através do *CommandLineRunner* encontrado em *ProdutoApplication*
+1. Caso não tenha usuário cadastro na base de dados, criar ao executar a aplicação através do *CommandLineRunner* encontrado em *ProdutoApplication*
    - Enviar um método **POST** para "/login" com o Body no formato "Form URL Encoded" com a seguinte estrutura:
-   ```
-   Body:
-   ```
    ```json
    { "nomeUsuario": "string",
      "password": "string"

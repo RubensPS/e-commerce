@@ -7,15 +7,16 @@ API para o projeto de e-commerce
 
 ## Arquitetura
 
+
 * Gradle
 * Java 17
 * Spring Boot
 * Spring Data
 * Spring JPA
+* Lombok
+* Actuator
 * Docker
 * PostgreSQL
-
-## Execução
 
 ### Clone
 
@@ -173,7 +174,7 @@ git clone https://github.com/RubensPS/e-commerce
 
 1. Para comunicação foi usado a arquitetura REST, baseado no Restful. Os serviços recebem e respondem JSON.
 
-2. Para banco de dados foi usado banco local através do docker, tanto para o projeto quanto para os testes.
+2. Para banco de dados foi usado banco local através do docker, tanto para o projeto quanto para os testes. Sendo assim, é necessário uma base de dados localmente.
 
 3. Na documentação foi pensado no swagger por ser uma ferramenta de facil implementação e usabilidade.
 

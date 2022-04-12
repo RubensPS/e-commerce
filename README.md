@@ -41,6 +41,17 @@ git clone https://github.com/RubensPS/e-commerce
    - A função *"USER"* apenas consegue utilizar os métodos **GET**
    - A função *"ADMIN"* consegue acessar todos os métodos;
 
+   1. Para o endpoint de *usuario* com método **PATCH**, é necessário aplicar no **HEADER** da requisição um *Content-Type: application/json-patch+json*.
+   Após isso, o body segue como o exemplo abaixo:
+   ```json
+      [
+         {
+            "op":"replace",
+            "path":"/nome",
+            "value":"nome do usuário"
+         }
+      ]
+   ```
 2. Todas as requisições estão documentadas no swagger. Após inicialização do projeto acesse o endereço: http://localhost:8080/swagger-ui.html
 3. Por favor, atentar a todas as observações das requisições.
 
@@ -112,10 +123,10 @@ git clone https://github.com/RubensPS/e-commerce
    "dataNascimento" : "1984-04-23"
    }
    ```
-2. Caminho=/, Método=**PATCH**
-   ```
-   Altera um usuario;
-   ```
+2. Caminho=/{id}, Método=**PATCH**
+   
+   Altera um usuário. Olhar em **Requisições** como ser feito;
+
 3. Caminho=/{id}, Método=**DELETE**
    ```
    Deleta um determinado usuário na base de dados a partir de seu ID.
@@ -191,7 +202,7 @@ git clone https://github.com/RubensPS/e-commerce
 
 3. Na documentação foi pensado no swagger por ser uma ferramenta de facil implementação e usabilidade.
 
-4. .Foi usado Acuator para expor informações operacionais.
+4. .Foi usado Actuator para expor informações operacionais.
 
 5. Nas responstas foi escolhido o objeto ResponseEntity do spring para gerenciar todo o objeto da resposta.
 

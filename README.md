@@ -41,7 +41,7 @@ git clone https://github.com/RubensPS/e-commerce
    - A função *"USER"* apenas consegue utilizar os métodos **GET**
    - A função *"ADMIN"* consegue acessar todos os métodos;
 
-   1. Para o endpoint de *usuario* com método **PATCH**, é necessário aplicar no **HEADER** da requisição um *Content-Type: application/json-patch+json*.
+   2. Para o endpoint de *usuario* com método **PATCH**, é necessário aplicar no **HEADER** da requisição um *Content-Type: application/json-patch+json*.
    Após isso, o body segue como o exemplo abaixo:
    ```json
       [
@@ -52,8 +52,8 @@ git clone https://github.com/RubensPS/e-commerce
          }
       ]
    ```
-2. Todas as requisições estão documentadas no swagger. Após inicialização do projeto acesse o endereço: http://localhost:8080/swagger-ui.html
-3. Por favor, atentar a todas as observações das requisições.
+3. Todas as requisições estão documentadas no swagger. Após inicialização do projeto acesse o endereço: http://localhost:8080/swagger-ui.html
+4. Por favor, atentar a todas as observações das requisições.
 
 
 <details><summary><b>Rotas dos produtos (Clique aqui)</b></summary>

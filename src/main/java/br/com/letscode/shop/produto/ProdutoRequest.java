@@ -1,6 +1,6 @@
 package br.com.letscode.shop.produto;
 
-import br.com.letscode.shop.fabricante.FabricanteEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
@@ -15,20 +15,11 @@ public class ProdutoRequest {
     private String nome;
     private String descricao;
     private BigDecimal valor;
+    @JsonProperty("codigoBarra")
     private String codigoBarra;
-    private FabricanteEntity fabricante;
+    @JsonProperty("nomeFabricante")
+    private String nomeFabricante;
     private Integer peso;
+    @JsonProperty("pesoUnidadeMedida")
     private String pesoUnidadeMedida;
-
-
-    public ProdutoEntity toEntity() {
-        return new ProdutoEntity(
-                this.getNome(),
-                this.getDescricao(),
-                this.getValor(),
-                this.getCodigoBarra(),
-                this.getFabricante(),
-                this.getPeso(),
-                this.getPesoUnidadeMedida());
-    }
 }
